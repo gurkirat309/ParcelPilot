@@ -1,0 +1,22 @@
+# Render blueprint — one container serving the API + built React app.
+# Deploy: push to GitHub, "New > Blueprint" in Render, set the two secrets.
+services:
+  - type: web
+    name: parcelpilot-agent
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter          # needs ~512MB+ for the local embedding model
+    healthCheckPath: /health
+    envVars:
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_FALLBACK_PROVIDER
+        value: gemini
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+      - key: GEMINI_MODEL
+        value: gemini-3.7-flash
+      - key: GROQ_API_KEY
+        sync: false        # set in the Render dashboard (secret)
+      - key: GEMINI_API_KEY
+        sync: false        # set in the Render dashboard (secret)

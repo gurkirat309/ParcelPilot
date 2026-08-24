@@ -1,0 +1,11 @@
+ticket_id,account_id,created_at,status,subject,description,channel,assigned_to,last_customer_message_at,historical_resolution
+TKT-901,ACCT-004,2026-08-10 15:20,closed,Bulk upload failed once,"A 3,300-row CSV failed to upload yesterday; retried and it worked.",email,Maya,2026-08-10 16:00,
+TKT-902,ACCT-001,2026-08-11 12:05,closed,SwiftShip status lag,Order briefly showed BOOKED after the driver had picked it up.,chat,Rohit,2026-08-11 12:30,
+TKT-910,ACCT-004,2026-08-16 09:50,open,"Bulk upload fails for 3,600-row CSV",Large CSV upload fails around 70%. Single shipment creation still works.,chat,Maya,2026-08-16 10:05,
+TKT-911,ACCT-001,2026-08-16 10:12,open,Bulk upload keeps failing,"Uploading a 4,000-row CSV fails repeatedly this morning.",email,Rohit,2026-08-16 10:20,
+TKT-912,ACCT-002,2026-08-16 10:38,open,Another large CSV upload failure,"Second failed bulk upload today, ~3,800 rows, stalls partway.",chat,Maya,2026-08-16 10:44,
+TKT-913,ACCT-004,2026-08-16 10:55,open,CSV import failing again,"Bulk import of 3,500 rows fails; smaller files seem fine.",email,Rohit,2026-08-16 10:58,
+TKT-920,ACCT-002,2026-08-16 10:30,open,SwiftShip order still shows BOOKED,Driver picked up ~15 min ago but the order still shows BOOKED.,chat,Maya,2026-08-16 10:40,
+TKT-921,ACCT-004,2026-08-16 10:22,open,Pickup done but status not updated,SwiftShip collected the parcel; ParcelPilot still says BOOKED.,email,Rohit,2026-08-16 10:33,
+TKT-930,ACCT-004,2026-08-16 10:41,open,All shipment creation failing,Every user here gets HTTP 500 creating shipments. Viewing works.,email,Rohit,2026-08-16 10:50,
+TKT-940,ACCT-003,2026-08-16 09:35,open,Update billing contact email,Please change the billing-contact email on our account.,email,Maya,2026-08-16 09:40,

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.local
+
+# Data — raw source stays out of git; extracted artifacts are regenerable
+data/extracted/*
+!data/extracted/.gitkeep
+
+# Local databases / indexes
+*.sqlite
+*.db
+*.faiss
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node (React frontend, later)
+node_modules/
+dist/
+build/
