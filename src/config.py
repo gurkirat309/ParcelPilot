@@ -50,8 +50,10 @@ class Settings(BaseSettings):
         env_file=ROOT / ".env", env_file_encoding="utf-8", extra="ignore"
     )
 
-    llm_provider: str = Field(default="gemini")
-    llm_fallback_provider: str = Field(default="")
+    # Groq primary / Gemini fallback is the empirically reliable default (Gemini
+    # 3.x flash free tier throws 503/429 under load). Override via .env if needed.
+    llm_provider: str = Field(default="groq")
+    llm_fallback_provider: str = Field(default="gemini")
 
     gemini_api_key: str = Field(default="")
     gemini_model: str = Field(default="gemini-3.7-flash")

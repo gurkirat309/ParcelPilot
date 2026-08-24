@@ -42,7 +42,19 @@ class ChatResponse(BaseModel):
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok", "demo_tokens": demo_tokens()}
+    from src.config import get_settings
+
+    s = get_settings()
+    # Report which provider is active and whether keys are present (never the
+    # keys themselves) so a deploy can be debugged from the browser.
+    return {
+        "status": "ok",
+        "llm_provider": s.llm_provider,
+        "llm_fallback_provider": s.llm_fallback_provider or None,
+        "groq_key_set": bool(s.groq_api_key),
+        "gemini_key_set": bool(s.gemini_api_key),
+        "demo_tokens": demo_tokens(),
+    }
 
 
 @app.get("/me")
