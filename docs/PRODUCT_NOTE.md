@@ -37,17 +37,54 @@ the authority base that Problem 2 depends on.
 
 ## Anything else we'd build for ParcelPilot (prioritised)
 
-1. **Draft-reply + suggested-action from the Ops Board** — turn a detected
-   cluster (e.g. KI-208 across 3 accounts) into a one-click proactive escalation
-   or status-page note. Highest leverage: closes the loop from detection to action.
-2. **Credit-ledger persistence** — track issued credits so Northstar's INR 5,000
-   monthly aggregate cap is enforced across real history (today it's computed but
-   month-to-date is not persisted).
-3. **A defined business-hours calendar** (config) so non-24×7 SLA targets become
-   computable — the single biggest gap the sources leave open.
-4. **Answer-level evals** — a graded question bank (incl. the trap cases) run in
-   CI to catch precedence regressions.
-5. **Real auth + per-role tooling** and a DB-backed proposal/audit log.
+Prioritised by *protect-the-core → close-the-loop → scale*, with the reason each
+matters. Rough effort in brackets.
+
+### Tier 1 — protect the core promise ("never confidently wrong")
+1. **Answer-level eval harness + CI gate** [S]. A graded question bank (the trap
+   cases + precedence/edge cases) that fails the build on any regression. *Why it
+   matters most:* the entire value proposition is trustworthiness; without
+   automated evals, a prompt tweak or model swap could silently reintroduce a
+   confidently-wrong answer. This is the cheapest, highest-leverage safeguard.
+2. **Confirmed-action write-back + immutable audit log** [M]. Today actions are
+   mocked and proposals live in memory. Production needs real ticket/escalation
+   execution with a durable, tamper-evident audit trail. *Why:* trust requires
+   accountability — every automated action must be attributable and reversible.
+3. **Business-hours / holiday calendar in config** [S]. Makes the non-24×7 SLA
+   targets that are currently "indeterminate" actually computable. *Why:* it's the
+   single biggest correctness gap the sources leave open, and it converts a large
+   class of "escalate to a human" into confident answers.
+
+### Tier 2 — close the detection → action loop (proactive value)
+4. **One-click actions from the Ops Board** [M]. Turn a detected cluster (e.g.
+   KI-208 across 3 accounts) into a bulk escalation, a status-page incident, or a
+   proactive customer notification. *Why:* converts detection into deflected
+   inbound tickets — the clearest operational ROI.
+5. **Credit ledger + monthly-cap enforcement** [M]. Persist issued credits so
+   Northstar's ₹5,000 monthly aggregate cap is enforced across real history
+   (today the clamp works but month-to-date is 0 at runtime), with finance-facing
+   spend analytics. *Why:* correctness of contractual caps + cost visibility.
+6. **Answer feedback loop** [S]. Thumbs up/down + "was this the governing source?"
+   on each answer, feeding a human-review queue and the eval set. *Why:* turns real
+   usage into a compounding quality signal and labelled data.
+
+### Tier 3 — scale to a real corpus and operate reliably
+7. **Retrieval hardening** [M]. Section-aware chunking, a cross-encoder reranker,
+   inline citation highlighting, and automated version/effective-dating of docs.
+   *Why:* the assessment corpus is ~24 chunks; production has hundreds of
+   docs and many versions where naive hybrid search degrades.
+8. **Provider observability + smart routing** [M]. Per-answer trace logging,
+   latency/cost/rate-limit dashboards, and cost-/health-aware routing across Groq
+   and Gemini. *Why:* keeps the agent fast and cheap under real load (the 503 we
+   hit on a free tier is exactly this class of problem).
+9. **Real auth + per-role tooling + tenant-isolation tests** [M]. Replace mock
+   bearer tokens with SSO, scope tools by role, and add automated cross-account
+   leakage tests to CI. *Why:* the access-control property is real today but the
+   identity layer and its regression tests are not.
+10. **Multi-turn memory + proactive follow-ups** [M]. Session summarisation and
+    scheduled follow-up tasks (e.g. "check whether KI-208 is resolved for these 3
+    accounts"). *Why:* moves from reactive Q&A toward an assistant that follows
+    through.
 
 ## What we intentionally left out
 
