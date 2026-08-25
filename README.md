@@ -5,7 +5,7 @@ The corpus is deliberately imperfect — one deprecated policy, two overriding
 customer agreements, and historical ticket resolutions that may be wrong.
 Correctly resolving those conflicts is the point.
 
-**[Watch the Loom Video Walkthrough](https://www.loom.com/share/28e502fe030947f48cd20cb9ace61aeb)**
+**[Watch the Loom Video Walkthrough](https://www.loom.com/share/28e502fe030947f48cd20cb9ace61aeb) | [Live Application](https://parcelpilot-keed.onrender.com/)**
 
 > **Status:** scaffolding + data extraction/analysis phase. No application
 > code yet. See `CLAUDE.md` for the rules and `docs/` for the analysis.
